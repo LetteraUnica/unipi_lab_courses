@@ -1,0 +1,42 @@
+2.a
+Vcc = 19.97 V
+
+R1 = 178500
+R2 = 17650
+Rc = 9820
+Re = 1014
+
+Cout = 110.7nf
+Cin = 221nf
+
+ddp ai capi di Rc = 9.92
+ddp Vce_q misurata = 9.00
+
+2.b
+Vb = 1.647
+Ve = 1.034
+Vbe = 0.614
+Vc = 10.01
+
+ddp capi R1 = 18.24
+ddp capi R2 = 1.644
+
+3.1
+Immagine
+
+3.2
+Sinusoide
+Vout = 2.06 +- 0.04
+Vin = 0.222 +- 0.003
+
+Triangolare
+1.98
+0.218
+
+Triangolare
+1.51
+13.7
+
+3.3
+Vout > 18.4 si ha clipping
+Vin > 1.78

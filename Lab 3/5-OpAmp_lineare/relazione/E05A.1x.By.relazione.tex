@@ -1,0 +1,268 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\newcommand{\rem}[1]{[\emph{#1}]}
+\newcommand{\exn}{\phantom{xxx}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}  %% use 1.a numbering
+
+\author{Gruppo 1G.BT \\ Francesco Sacco, Lorenzo Cavuoti}
+\title{Es05B: Circuiti lineari con Amplificatori Operazionali}
+\begin{document}
+\date{8 Novembre 2018}
+\maketitle
+
+
+\section*{Scopo dell'~esperienza}
+Misurare le caratteristiche di circuiti lineari realizzati con un op-amp TL081 alimentati tra +15 V e -15 V.
+
+\section{Amplificatore invertente}
+Si vuole realizzare un amplificatore invertente con un'~impedenza di ingresso superiore a 1 
+k$\Omega$ e con un amplificazione a centro banda di 10.
+
+\subsection{Scelta dei componenti}
+
+Si monta il circuito secondo lo schema mostrato in figura \ref{fig:ampinv}, utilizzando la barra di 
+distribuzione verde per la tensione negativa, quella rosso per la tensione positiva, e quella nera per 
+la massa. Si sono scelti $R_1 = 1.2k\Omega$ e $R_2 = 12k\Omega$ nominali in quanto risolvendo il circuito considerando un OpAmp ideale si trova $A_V=R_2/R_1$
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.4\linewidth]{circuit.png}
+\caption{\small Schema di un amplificatore invertente}
+\label{fig:ampinv}
+\end{center}
+\end{figure}
+%
+
+Le resistenze selezionate hanno i seguenti valori, misurati con il multimetro digitale, con il corrispondente valore atteso 
+del guadagno in tensione dell'~amplificatore.
+\[
+R_1 = ( 1.19 \pm 0.01) \,\mathrm{k}\Omega, \quad 
+R_2 = ( 12.2 \pm 0.1) \,\mathrm{k}\Omega, \quad 
+A_{exp} = ( 10.2 \pm 0.1)
+\]
+
+\subsection{Montaggio circuito}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linearit\`a e misura del guadagno}
+Si fissa la frequenza del segnale ad $f_{in} = (5.59 \pm 0.06)$ kHz e si invia all'~ingresso dell'~amplificatore.
+L'uscita dell'~amplificatore \`e mostrata qualitativativamente in Fig. \ref{fig:oscinv} per due 
+differenti ampiezze di $V_{in}$ (circa $424mV$~Vpp e $4.32V$~Vpp). 
+Nel primo caso l'~OpAmp si comporta in modo lineare mentre nel secondo caso si osserva clipping.   
+%
+\begin{figure}[h]
+\begin{center}
+\framebox(200,200){
+	\includegraphics[width=7cm,height=6cm]{screenshot/foto1.png}
+}
+\framebox(200,200){
+	\includegraphics[width=7cm,height=6cm]{screenshot/foto2.png}
+}
+\end{center}
+\caption{\small Ingresso ed uscita di un amplificatore invertente con OpAmp, in 
+zona lineare (a sinistra) e non (a destra)}
+\label{fig:oscinv}
+\end{figure}
+%
+
+Variando l'~ampiezza di $V_{in}$ si misura $V_{out}$ ed il relativo guadagno $A_V=V_{out}/V_{in}$ riportando i dati ottenuti in tabella~\ref{tab:guadagno} 
+e mostrandone un grafico in Fig. \ref{fig:lin}. Il fit è stato fatto sulla retta $V_{out}$ vs $V_{in}$ usando la funzione curve\_fit di scipy con ablosute\_sigma=False, sono stati considerati anche gli errori sulla x.
+
+\begin{table}[h]
+\caption{$V_{out}$ in funzione di $V_{in}$ e relativo rapporto.}
+\label{tab:guadagno}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$V_{in}$ (V) & $V_{out}$ (V)  & $A_V$ \\
+\hline
+\hline
+$66 \pm 3\mathrm{m} $ & $680 \pm 30\mathrm{m} $ & $10.2 \pm 0.6 $ \\
+\hline
+$290 \pm 10\mathrm{m} $ & $2.9 \pm 0.1 $ & $10.1 \pm 0.6 $ \\
+\hline
+$730 \pm 30\mathrm{m} $ & $7.4 \pm 0.3 $ & $10.1 \pm 0.6 $ \\
+\hline
+$1.26 \pm 0.05 $ & $12.7 \pm 0.5 $ & $10.1 \pm 0.6 $ \\
+\hline
+$2.7 \pm 0.1 $ & $27 \pm 1 $ & $10 \pm 0.6 $ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Si determina il guadagno mediante fit dei dati ottenuti:
+\[
+A_{best} = 10.07 \pm 0.03 \quad  \chi^2 = 0.02
+\]
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.8\linewidth]{1c.png}
+\caption{\small Linearit\`a dell'~amplificatore invertente}
+\label{fig:lin}
+\end{center}
+\end{figure}
+%
+
+Il circuito si comporta linearmente fino a $V_{in} \approx 2.8V$, questo rispecchia il funzionamento dell'OpAmp, infatti con una ddp di alimentazione $\approx 30V$ e con un guadagno atteso di $10.2$ ci aspettiamo che il clipping avvenga a circa 3V, in accordo con quanto misurato. Da questo si può dedurre che alzando o abbassando la ddp di alimentazione il clipping avverrà a una ddp maggiore o minore, rispettivamente.
+
+%%%%%%%%%%%%%%%%%%
+%
+\section{Risposta in frequenza e \emph{slew rate}}
+\subsection{Risposta in frequenza del circuito}
+Si misura la risposta in frequenza del circuito, riportando i dati  in Tab. \ref{tab:bodeinv} e
+in un grafico di Bode in Fig. \ref{fig:bodeinv}, stimando la frequenza di taglio inferiore e 
+superiore. osservando la frequenza alla quale il guadagno risulta -3dB del massimo, l'errore è stato valutato variando la frequenza fino a che non si osserva un cambiamento nell'ampiezza del segnale di uscita.
+\[
+V_{in} = (1.14 \pm 0.05 )\,\mathrm{V}
+\]
+\[
+f_L = (7.5 \pm 0.3 )\,\mathrm{Hz}\;\;\;\;\;f_H = (210 \pm 4 \;)\,\mathrm{kHz}
+\]
+\begin{table}[h]
+\caption{\small Guadagno dell'~amplificatore invertente in funzione della frequenza.}
+\label{tab:bodeinv}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$f_{in}$ (kHz) & $V_{out}$ (V) & $A$ (dB) \\
+\hline
+$2.58 \pm 0.3$& $ 3.8 \pm 0.2$& $3.3\pm 0.2$ \\ 
+\hline
+$172.0 \pm 2$& $ 11.6 \pm 0.5$& $10.2\pm 0.6$ \\
+\hline
+$5.56 \pm 0.06 k$& $ 11.5 \pm 0.5$& $10.1\pm 0.6$ \\ 
+\hline
+$67.7 \pm 0.7 k$& $ 11.0 \pm 0.5$& $9.6\pm 0.6$ \\ 
+\hline
+$952 \pm 10 k$& $ 2.5 \pm 0.1$& $2.2\pm 0.1$ \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table} 
+
+
+
+
+ 
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.7\linewidth]{2a.png}
+\caption{\small Plot di Bode in ampiezza per l'~amplificatore invertente.}
+\label{fig:bodeinv}
+\end{center}
+\end{figure}
+%
+\subsection{Misura dello \emph{slew-rate}}
+Si misura direttamente lo \emph{slew-rate} dell'op-amp inviando in ingresso un'~onda quadra 
+di frequenza di $\sim 2.11$~kHz e di ampiezza $\sim 2.70$~V. Si ottiene:
+\[
+SR_\mathrm{misurato} = (7.7 \pm 0.3 )\,\mathrm{V/\mu s} \quad \mathrm{valore \; tipico}\, (13 )\,\mathrm{V/\mu s}\
+\]
+
+Lo slew rate misurato risulta circa la metà rispetto a quello atteso e non sappiamo perchè%
+\section{Circuito integratore}
+Si monta il circuito integratore con i seguenti valori  dei componenti indicati: 
+\[
+R_1 = (0.990 \pm  0.008\;) \,\mathrm{k}\Omega, \:\:\;\:\exn 
+R_2 = (9.83 \pm 0.08 \;) \,\mathrm{k}\Omega, \:\:\;\:\exn 
+C = (\;49 \pm 2 \;\;)\,\mathrm{nF}
+\]
+
+\subsection{Risposta in frequenza}
+
+Si invia un'~onda sinusoidale e si misura la risposta in frequenza dell'~amplificazione e della fase riportandoli 
+nella tabella \ref{tab:bodeinte} e in un diagramma di Bode in Fig. \ref{fig:bodeinte}. 
+\[
+V_{in} = (1.03 \pm 0.04 )\,\mathrm{V}
+\]
+%
+\begin{table}[h]
+\caption{Guadagno e fase dell'~integratore invertente in funzione della frequenza.}
+\label{tab:bodeinte}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$f_{in}$ (kHz) & $V_{out}$ (V) & $A$ (dB) & $\Delta t (\mu s)$ & $\phi(rad/\pi)$ \\
+\hline
+	$10.8\pm0.05$ & $8.2\pm0.4$ & $19.9\pm0.6$ & $(4.52\pm0.02)\times 10^{-2}$ & $0.976\pm0.006$ \\
+	$(1.08\pm0.005)\times 10^{2}$ & $9.5\pm0.4$ & $19.3\pm0.6$ & $(4.12\pm0.02)\times 10^{-3}$ & $0.89\pm0.006$ \\
+	$(1.07\pm0.005)\times 10^{3}$ & $3.0\pm0.1$ & $9.3\pm0.5$ & $(2.72\pm0.02)\times 10^{-4}$ & $0.582\pm0.005$ \\
+	$(1.07\pm0.005)\times 10^{4}$ & $0.32\pm0.01$ & $-10.1\pm0.5$ & $(2.32\pm0.01)\times 10^{-5}$ & $0.496\pm0.003$ \\
+	$(1.08\pm0.005)\times 10^{5}$ & $(4.1\pm0.2)\times 10^{-2}$ & $-28.0\pm0.6$ & $(2.16\pm0.01)\times 10^{-6}$ & $0.467\pm0.003$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table} 
+%
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{3a.png}
+\includegraphics[width=0.45\linewidth]{3fase.png}
+\end{center}
+\caption{\small Plot di Bode in ampiezza (a sinistra) e fase (a destra) per il circuito integratore.}
+\label{fig:bodeinte}
+\end{figure}
+%
+
+Si ricava una stima delle caratteristiche principali dell'andamento (guadagno a bassa frequenza, frequenza di taglio, e pendenza ad alta frequenza)
+e si confrontano con quanto atteso. Non si effettua la stima degli errori, trattandosi di misure qualitative. I valori attesi sono stati ottenuti calcolando il guadagno del circuito:
+\begin{equation*}
+A_V=\bigg|\frac{Z_2}{Z_1}\bigg|=\frac{R_2}{R_1}\frac{1}{\sqrt{(\omega C R_2)^2 +1}}
+\end{equation*}
+Si nota subito che il massimo si ha per $\omega=0, A_V=R2/R1$, la frequenza di taglio si ottiene ponendo $\omega R_2 C=1 \qquad f_H = 1/2\pi R_2 C$, infine in guadagno ad alta frequenza può essere approssimato con $A_V = 1/\omega C R_1$.
+
+\begin{align*}
+A_M &= (19.5)\,\mathrm{dB} & \mathrm{atteso} &:\,(19.9  )\, \mathrm{dB}  \\
+f_H &= (355)\,\mathrm{Hz} & \mathrm{atteso} &:\,(330  )\, \mathrm{Hz} \\
+{\mathrm{d}A_V}/{\mathrm{d}f} &= (-18.6)\,\mathrm{dB/decade} & \mathrm{atteso} &:\,(-20 )\, \mathrm{dB/decade}  \\
+\end{align*}
+
+
+%
+\subsection*{Risposta ad un'~onda quadra}
+Si invia all'~ingresso un'~onda quadra di frequenza $\sim 6.47\,kHz$ e ampiezza $\sim 1.09\,V$.
+Si riporta in Fig. \ref{fig:oscinte} le forme d'~onda acquisite all'~oscillografo per l'~ingresso
+e l'~uscita. Il circuito si comporta come un integratore invertente infatti l'uscita presenta un'onda triangolare con minimi e massimi dove $V_{in}$ passa da alto a basso e basso a alto rispettivamente
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{screenshot/foto3.png}
+\end{center}
+\caption{\small Ingresso (onda quadra) ed uscita (onda triangolare) del circuito integratore per un'~onda quadra.}
+\label{fig:oscinte}
+\end{figure}
+%
+
+Si misura l'~ampiezza dell'~onda  in uscita e si confronta il valore atteso.\newline
+
+risolvendo  il circuito si ottiene che
+\[
+	\frac{V_{out}}{V_{in}}=\frac{R_2}{R_1}\frac{1}{\omega C R_2 +1}\approx \frac{1}{R_1i\omega C}\quad \textrm{per frequenze alte}
+\]
+sfuttando la linearità del circuito si ottiene che $V_{out}=\frac{1}{R_1C}\int V_{in}(t)dt$, essendo $V_{in}$ un'onda quadra si può effettuare l'integrale sulla parte positiva dell'onda quadra per ottenere il valore massimo di $V_{outMax}$, supponendo che l'onda quadra passa da positivo a negativo a $t=0$ si ottene che
+\begin{equation}
+\label{eq:asd}
+	V_{outMax}=\frac{1}{R_1C}\int_0^{T/2}V_{in}dt=\frac{V_{in}}{2R_1Cf}\approx 0.86
+\end{equation}
+
+\begin{align*}
+V_{out} &= (0.86 )\,\mathrm{V} & \mathrm{atteso} &:\,(0.86  )\, \mathrm{V}  \\
+\end{align*}
+
+
+\subsection{Discussione}
+Come si vede dall'equazione \ref{eq:asd} l'ampiezza di $V_{out}$ è inversamente proporzionale alla frequenza e la fase $\phi$ del segnale è data da $\phi=\textrm{arctg}(\omega C R_2)$, il circuito rispetta le aspettative, in particolare il guadagno e la frequenza di taglio sono in accordo con le previsioni teoriche.\newline
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}          
