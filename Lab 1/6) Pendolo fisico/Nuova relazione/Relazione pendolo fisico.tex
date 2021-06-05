@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Pendolo fisico}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Misurare il periodo di un pendolo fisico in funzione della distanza del centro di massa dal punto di sospensione.
+		
+	\section{Cenni teorici}
+		Un qualunque oggetto fissato ad un punto di sospensione $P$ con distanza $d$ dal centro di massa e soggetto alla forza di gravit\`{a} costituisce un pendolo fisico. Se il pendolo viene spostato di un angolo $\theta$ dalla posizione di equilibrio il momento della forza di gravit\`{a} vale
+		\begin{equation}
+			\tau = -mgd\sin(\theta)
+		\end{equation}
+		Per angoli piccoli abbiamo $\sin(\theta) \approx \theta$, quindi
+		\begin{equation}
+			\tau = -mgd\theta
+		\end{equation}
+		Per la seconda equazione cardinale si ha
+		\begin{equation}
+			\tau = \frac{dL}{dt}
+		\end{equation}
+		e usando le relazioni $L = I\omega$ e $\omega = \frac{d\theta}{dt}$ abbiamo
+		\begin{equation}
+			\tau = I\frac{d^2\theta}{dt^2}
+		\end{equation}
+		Di conseguenza possiamo scrivere
+		\begin{equation}
+			\frac{d^2\theta}{dt^2} + \frac{mgd}{I}\theta = 0
+		\end{equation}
+		Che rappresenta l'equazione di un moto armonico con pulsazione costante
+		\begin{equation}
+			\omega_0 = \sqrt{\frac{mgd}{I}}
+		\end{equation}
+		e periodo
+		\begin{equation}
+			T_0 = 2\pi\sqrt{\frac{mgd}{I}}
+		\end{equation}
+		Sapendo che il momento d'inerzia di un'asta di massa $m$ e lunghezza $l$ rispetto ad un punto $P$ che dista $d$ dal centro di massa vale
+		\begin{equation}
+			I = \frac{ml^2}{12}+md^2
+		\end{equation}
+		Si ha infine
+		\begin{equation}
+			T(d) = 2\pi\sqrt{\frac{l^2/12+d^2}{gd}}
+			\label{Periodo pendolo fisico}
+		\end{equation}
+		
+		\section{Apparato sperimentale e strumenti}
+			\begin{itemize}
+				\item Asta metallica con 10 fori equidistanti
+				\item Supporto di sospensione
+				\item Cronometro (risoluzione 0.01s)
+				\item Metro a nastro (risoluzione 1mm)
+				\item Calibro ventesimale (risoluzione 0.05mm)
+			\end{itemize}
+			L'apparato sperimentale \`{e} composto da un asta metallica attaccata, tramite un perno rimovibile, ad un supporto. L'asta \`{e} libera di oscillare.
+			
+		\section{Descrizione delle misure}
+			Per prima cosa abbiamo misurato la lunghezza complessiva dell'asta con il metro a nastro, successivamente, con il calibro ventesimale, abbiamo misurato la distanza minima tra due fori consecutivi e lo spessore di ciascun foro cos\`{\i} da ricavare la distanza media tra due fori consecutivi. Infine abbiamo fissato la barra metallica in 5 fori diversi e per ciascuno abbiamo misurato 6 volte 10 periodi, facendo media e deviazione standard abbiamo ricavato cosi\`{\i} il singolo periodo e l'errore associato ad esso (tabella \ref{tabella periodi distanza}). L'ampiezza non \`{e} rilevante ai fini dell'esperienza in quanto abbiamo usato un angolo $\theta$ corrispondente alle piccole oscillazioni, per cui si ha l'isocronismo del pendolo.
+			\\\\
+			\begin{table}
+				\begin{adjustbox}{width=\textwidth}
+					\begin{tabular}{lrrrrrrr}
+						\centering
+						$d$ [cm]&$T_1 \pm \:0.01[s]$&$T_2 \pm \:0.01[s]$&$T_3 \pm \: 0.01[s]$&$T_4 \pm \:0.01[s]$&$T_5 \pm \:0.01[s]$&$T_6 \pm \:0.01[s]$&Media periodi/10 [s]\\
+						\hline
+						\hline
+						$47.49\pm0.06$&16.17&16.37&16.31&16.45&16.33&16.54&$1.636\pm0.005$\\
+						$37.51\pm0.07$&15.71&15.73&15.80&15.85&15.72&15.92&$1.579\pm0.003$\\
+						$27.53\pm0.08$&15.53&15.77&15.76&15.69&15.70&15.67&$1.568\pm0.004$\\
+						$17.55\pm0.09$&16.83&16.95&16.77&16.79&16.72&16.87&$1.682\pm0.003$\\
+						$7.57\pm0.09$&22.87&23.04&22.93&22.86&22.88&23.00&$2.293\pm0.003$\\
+					\end{tabular}
+				\end{adjustbox}
+				\label{tabella periodi distanza}
+				\caption{Periodi $T$ in funzione della distanza $d$ dal centro di massa}
+			\end{table}
+		
+		\section{Analisi dati}
+			Abbiamo realizzato un grafico cartesiano con la distanza dal centro di massa sulle ascisse e le medie dei periodi misurati sulle ordinate, gli errori sui periodi sono stati calcolati facendo la deviazione standard della media sui dati raccolti. Una volta inseriti i punti vi abbiamo sovrapposto la (\ref{Periodo pendolo fisico}), cos\`{\i} da valutare l'accordo tra i dati ed il modello (figura \ref{fig:pendolo-fisico-parametri-misurati}). Il $\chi^2$ risulta $4.22$ vicino al valore aspettato di $5\pm3.2$.
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{"../../../Relazione esame/Pendolo fisico parametri misurati"}
+				\caption{Grafico pendolo fisico con $l$ misurato}
+				\label{fig:pendolo-fisico-parametri-misurati}
+			\end{figure}
+			Per completezza abbiamo fatto un fit dei nostri dati con la (\ref{Periodo pendolo fisico}) lasciando $l$ come parametro libero (figura \ref{fig:pendolo-fisico-migliori-parametri}). Il $\chi^2$ risulta $2.33$ vicino al valore aspettato di $4\pm2.8$, mentre $l = 1.052\pm0.002\:[m]$
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{"../../../Relazione esame/Pendolo fisico migliori parametri"}
+				\caption{Grafico pendolo fisico con $l$ stimato tramite fit}
+				\label{fig:pendolo-fisico-migliori-parametri}
+			\end{figure}
+		
+		\section{Conclusioni}
+			Sovrapponendo la (\ref{Periodo pendolo fisico}) ai nostri dati sperimentali abbiamo ottenuto un $\chi^2 = 4.22$ che risulta entro una deviazione standard dal valore aspettato di $5\pm3.2$, inoltre osservando il grafico (figura \ref{fig:pendolo-fisico-parametri-misurati}) notiamo 3 punti sopra la funzione e 2 punti sotto, come ci aspetteremmo.
+			Per quanto riguarda il fit con $l$ parametro (figura \ref{fig:pendolo-fisico-migliori-parametri}) abbiamo ottenuto un $\chi^2 = 2.33$, anche in questo caso entro il valore aspettato di $4\pm2.8$. Il valore del parametro $l$ risulta $1.052\pm0.002\:[m]$ entro al valore misurato di $1.05$. In conclusione, basandoci sul test del $\chi^2$ e sul valore del parametro $l$ misurato rispetto a quello stimato, possiamo affermare che il modello teorico si adatta bene alla realt\`{a}.
+\end{document}

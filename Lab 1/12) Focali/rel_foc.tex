@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Misura delle focali di lenti sottili}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Misura delle focali di una lente convergente e di una divergente
+	
+	\section{Cenni teorici}
+		Per la legge delle lenti sottili, data $p$ la distanza tra la sorgente e la lente e $q$ la distanza tra la lente e l'immagine, si ha
+		\begin{equation}
+			\frac{1}{p} + \frac{1}{q} = \frac{1}{f}
+			\label{legge lenti sottili}
+		\end{equation}
+		Dove f \`{e} la distanza focale della lente
+	
+	\section{Apparato sperimentale e strumenti}
+		Abbiamo a disposizione:
+		\begin{itemize}
+		\item Banco ottico dotato di supporto per lenti, sorgente luminosa e schermo mobile.
+		\item Set di lenti (convergenti e divergenti) di varie lunghezze focali.
+		\item Metro a nastro (risoluzione 1mm).
+		\end{itemize}
+	
+	\section{Descrizione delle misure}
+		Per trovare la focale della lente convergente abbiamo posto questa tra la sorgente e lo schermo, spostandola opportunamente e misurando ogni volta i valori di $p$ e $q$ quando l'immagine risulta a fuoco, dai quali con un fit usando la (\ref{legge lenti sottili}) abbiamo ricavato $f$.\\
+		Useremo lo stesso procedimento per una lente divergente, questa volta per\`{o} affich\`{e} si possano effettuare le misure (la lente divergente da sola non metterebbe a fuoco) \`{e} necessaria anche una lente convergente di potere diottrico maggiore.
+		Prima abbiamo messo a fuoco l'immagine solo con la lente convergente, poi abbiamo posizionato la lente divergente tra la lente convergente e lo schermo. In questo caso $p$ rappresenta la distanza tra la lente divergente e lo schermo (senza che l'immagine risulti a fuoco). Successivamente abbiamo misurato la stessa distanza una volta che, spostando lo schermo, abbiamo ottenuto un immagine a fuoco, questa distanza sar\`{a} $q$, che equivale alla distanza della lente da una sorgente virtuale.
+		
+	\section{Analisi dati}
+		\subsection{Lente convergente}
+		Per la lente convergente i valori di $p$ e $q$ misurati sono:\\\\
+		\begin{tabular}{ccccccccccc} 
+			$\emph{p} \pm 0.2 cm$& 30.3& 59.9& 41.8& 32.6& 39.2& 53.2& 47.6& 39.5& 33.2& 31.1 \\
+			\hline
+			$\emph{q} \pm 0.2 cm$& 59.7& 30.9& 39.1& 52.6& 41.1& 35.5& 34.3& 41.4& 51.5& 58.7   
+		\end{tabular} \\\\
+		In realt\`{a} alle misure corrispondenti ai dati in cui la lente era pi\`{u} vicina allo schermo abbiamo associato un errore pi\`{u} grande fino ad un massimo di $8\emph{mm}$ perch\`{e} risultava pi\`{u} difficile la messa a fuoco.
+		Abbiamo eseguito un fit dei minimi quadrati, ma non essendo verificata la condizione di trascurabilit\`{a} dell'errore sulla variabile indipendente, abbiamo definito le incertezze efficaci e iterato la procedura di fit fino a che i parametri e il $\chi^2$ non si fossero stabilizzati:\\\\
+		passo 0\\
+		m = -0.952 +- 0.043\\
+		f = 20.762 +- 0.507\\
+		chi2 = 13.705, chi2/ndof = 1.713, pvalue = 1.001\\\\
+		passo 1\\
+		m = -0.953 +- 0.043\\
+		f = 20.762 +- 0.507\\
+		chi2 = 13.708, chi2/ndof = 1.714, pvalue = 1.001\\\\
+		passo 2\\
+		\textbf{m = -0.953 +- 0.043}\\
+		\textbf{f = 20.762 +- 0.507}\\
+		\textbf{chi2 = 13.708}, chi2/ndof = 1.714, pvalue = 1.001\\
+	\subsection{Lente divergente}
+		Lo stesso abbiamo fatto coi dati della lente divergente:\\\\
+		\begin{tabular}{ccccccccccc}
+			\emph{p} $\pm$0.1 cm& 5.5& 6.2& 8.0& 9.5& 5.8& 5.0& 4.0& 7.5& 7.0& 8.5 \\
+			\hline 
+			\emph{q} $\pm$0.1 cm& 8.0& 9.4& 12.5& 20.5& 8.4& 7.4& 4.7& 12.0& 10.5& 16.0 
+		\end{tabular}\\\\
+		Applicando la stessa procedura di fit abbiamo ottenuto in 4 passi valori stabili di:\\\\
+		passo 0\\
+		m = 1.030 +- 0.066\\
+		f = -17.596 +- 2.643\\
+		chi2 = 12.079, chi2/ndof = 1.510, pvalue = 1.002\\\\
+		passo 1\\
+		m = 1.030 +- 0.066\\
+		f = -17.589 +- 2.641\\
+		chi2 = 12.814, chi2/ndof = 1.602, pvalue = 1.002\\\\
+		passo 2\\
+		m = 1.030 +- 0.066\\
+		f = -17.589 +- 2.641\\
+		chi2 = 12.811, chi2/ndof = 1.601, pvalue = 1.002\\\\
+		passo 3\\
+		\textbf{m = 1.030 +- 0.066}\\
+		\textbf{f = -17.589 +- 2.641}\\
+		\textbf{chi2 = 12.811}, chi2/ndof = 1.601, pvalue = 1.002
+	
+	\section{Conclusioni}
+	I parametri di fit rientrano nei valori aspettati e possiamo affermare che si verifica un buon accordo tra dati sperimentali e modello visto che il $\chi^2$ non dista poco pi\`{u} di una deviazione standard dal valore aspettato (che in entrambi i casi \'{e} di $8 \pm 4$). Quindi possiamo concludere che la focale della prima lente risulta $20.7 \pm 0.5 cm$ e quella della seconda lente invece $-17.6 \pm 2.6 cm$, negativa come ci aspettiamo che sia per una lente divergente.
+
+\end{document}

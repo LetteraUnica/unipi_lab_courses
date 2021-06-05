@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Pendolo semplice}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[width=0.25\textwidth]{/Users/Alicelongh/Documents/LAB/Pendolofisico/Fig_6_7.jpg}
+		\caption{pendolo fisico}
+	\end{figure}
+	
+	Utilizzeremo i dati raccolti della precedente esperienza sul pendolo fisico, ovvero le misure dei periodi di oscillazione (nell'approssimazione di piccole oscillazioni) in funzione della distanza dal centro di massa, e vi applicheremo i metodi di fit studiati.
+	
+	\begin{center}
+		\begin{tabular}{cccc}
+			\hline
+			\multicolumn{4}{c}{Dati raccolti T(d)}\\
+			\hline
+			\multicolumn{2}{c}{distanza dal centro di massa (m)}& \multicolumn{2}{c}{periodo (s)}\\
+			\hline
+			\hline
+			$47.50$&  $\pm0.15$& $1.635$& $\pm0.005$\\
+			\hline
+			$37.52$& $\pm0.16$& $1.568$& $\pm0.002$\\
+			\hline
+			$27.54$& $\pm0.16$& $1.561$& $\pm0.004$\\
+			\hline
+			$17.55$& $\pm0.17$& $1.680$& $\pm0.001$\\
+			\hline
+			$7.57$& $\pm0.17$& $2.285$& $\pm0.003$\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Materiali a disposizione}
+		\begin{itemize}
+			\item Dati raccolti del pendolo fisico
+			\item Calcolatore con ambiente di programmazione python 
+		\end{itemize}
+	
+	\section{Analisi dei dati}
+		Come prima cosa abbiamo realizzato tre curve corrispondenti al modello:
+		\begin{equation}
+			T\left( d \right) = 2\pi\sqrt{\frac{\frac{l^2}{12}+d^2}{gd}}
+			\label{modello}
+		\end{equation}
+		Riferite al valore stimato della lunghezza dell'asta $\hat{l}$ , a $\hat{l}+\sigma_l$ e $\hat{l}-\sigma_l$; nello stesso grafico (figura \ref{3 curve}) sono inseriti i dati relativi a tempi e distanze rilevati sperimentalmente.	
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.70]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/figure_1-1.pdf}
+			\label{3 curve}
+		\end{figure}
+		Al fine di visualizzare la posizione dei punti rispetto alla banda riportiamo gli ingrandimenti relativi a ciascun punto.\\
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.41]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/zoom1.pdf}
+		\end{figure}
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.41]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/zoom2.pdf}
+		\end{figure}
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.41]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/zoom3.pdf}
+		\end{figure}
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.41]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/zoom4.pdf}
+		\end{figure}
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.41]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/zoom5.pdf}
+		\end{figure}
+		Solo il quarto punto è strettamente compreso entro la banda,  l'ultimo e il terzo distano meno di 3 sigma dal modello calcolato nel valore centrale, mente il primo e il secondo distano più di 4 sigma dalla media.
+		Non risulta quindi un buon accordo tra i dati sperimentali ed il modello.
+		\subsection{Fit seguendo il modello}
+			Prima di tutto abbiamo verificato l'applicabilità del fit, ovvero la condizione: 
+			\begin{equation}
+				|\frac{dT}{dd}(d_i)| \sigma_{d_i} \ll \sigma_{T_i}
+				\label{condiz}
+			\end{equation} 
+			per fare ciò abbiamo ricavato la derivata analiticamente e calcolato il primo membro della disuguaglianza per ogni dato, dal confronto col secondo membro la condizione risulta verificata per il secondo e il terzo punto, ma non per gli altri tre, come si può notare nella seguente tabella.
+			\begin{tabular}{ccc}
+				\centering
+				\hline
+				$pt$& $| \frac{dT}{dd}| \sigma_{d_i}(m)$& $\sigma_{T_i}(m)$\\
+				\hline
+				\hline
+				$1$& $0.0011$& $0.0053$\\
+				$2$& $0.0007$& $0.0022$\\
+				$3$& $0.0004$& $0.0048$\\
+				$4$& $0.0040$& $0.0013$\\
+				$5$& $0.0220$& $0.004$\\					
+				\hline
+			\end{tabular}
+			Trascurando questo inconveniente abbiamo comunque eseguito il fit lasciando l come parametro libero: l risulta $1.049 [m]$, con un errore dell'ordine di $10^{-6}$, il risultato \`{e} quindi compatibile con la misura effettuata con metro a nastro di $1.050 \pm 0.002$ m; il $\chi^2$ risulta $39.2$, molto distante dal valore aspettato di $4.0 \pm 2.8$; infine il p-value risulta $6.4\times10^{-8}$\\\\
+			Alternativamente abbiamo calcolato le incertezze efficaci $\sigma_{T_i} \rightarrow \sqrt{{\sigma_{T_i}}^2 +{| \frac{dT}{dd}(d_i)|}^2 {\sigma_{d_i}}^2}$  per i punti che non verificano la condizione (\ref{condiz}), il $\chi^2$ risulta $19.78$, migliore del precedente ma comunque fuori dal valore aspettato, mentre il p-value risulta $5.5\times10^{-3}$.\\\\
+			La soluzione migliore risulta eseguire il fit eliminando il secondo punto, in quanto distante più di $5 \sigma$ dal modello; così facendo il $\chi^2$ risulta $3.9$ e rientra nel nuovo valore aspettato di $3.0 \pm 2.4$.
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[scale=0.55]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/t_opt-1.pdf}
+				\caption{grafico del modello con valore di best fit del parametro l}
+			\end{figure}
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[scale=0.55]{/Users/Alicelongh/Documents/LAB/EsercitazionesuiFit/redidui_t_opt-1.pdf}
+				\caption{grafico dei residui rispetto al modello di best fit}
+			\end{figure}
+
+	\section{Conclusioni}
+	Le misure ricavate sperimentalmente non verificano un buon accordo con i dati, come si può notare dal primo grafico nel quale solo un punto \`{e} contentuto entro la banda definita dal modello calcolato in $l+\sigma$ , $l-\sigma$. Tuttavia basta eliminare il secondo punto per ottenere un buon fit ed un parametro di fit in accordo con le misure sperimentali; quindi con alcuni accorgimenti il modello risulta in accordo con i dati sperimentali.
+
+\end{document}
+
+
+
+
+
+
+

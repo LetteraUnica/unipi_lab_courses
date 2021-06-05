@@ -1,0 +1,11 @@
+#
+# Written by plasduino.diceEventBuffer on Wed Dec 14 16:50:21 2016.
+#
+# Sample mean = 3.475000, sample standard deviation = 1.690039 (1000 entries)
+#
+1	161
+2	184
+3	153
+4	179
+5	167
+6	156

@@ -1,0 +1,111 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Oscillazioni accoppiate}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+		\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Studiare il moto di due pendoli, sia singolarmente che simultaneamente e osservare e studiare il fenomeno dei battimenti.
+	
+	\section{Cenni teorici}
+		Un singolo pendolo libero di oscillare si muove con pulsazione angolare
+		\begin{equation}
+			\label{w0}
+			w_0 = \sqrt{\frac{mgl}{I}}
+		\end{equation}
+		idealmente costante nel tempo; in presenza di attrito non trascurabile, tuttavia, lo smorzamento diventa significativo. L'ampiezza si riduce secondo la legge:
+		\begin{equation}
+			\label{ampiezza smorzata}
+			\theta_0(t) = \theta_0(0)e^{-\lambda t} \qquad \tau = \frac{1}{\lambda}
+		\end{equation}
+		Se invece il sistema coinvolge due oscillatori accoppiati il moto risulta pi\`{u} complicato ma pu\`{o} essere interamente descritto studiando i due modi normali di oscillazione: in fase ed in controfase, di pulsazione rispettivamente $ w_s $ e $ w_c $.
+		\begin{equation}
+			\label{battimenti}
+			x(t) = A_0[\cos(w_ft + \phi_1) + \cos(w_ct + \phi_2)]
+		\end{equation}
+		o, per le formule di prostaferesi
+		\begin{equation}
+			x(t) = 2A_0(\cos[\frac{(w_c + w_f)t}{2}+\frac{(\phi_2 + \phi_1)}{2}]\cos[\frac{(w_c - w_f)t}{2}+\frac{(\phi_2 - \phi_1)}{2}])
+			\label{prostaferesi}
+		\end{equation}
+		dove 
+		\begin{equation}
+			\label{pulsazione portante}
+			w_p = \frac{w_c + w_f}{2}\approx w_c, w_f
+		\end{equation}
+		\`{e} la pulsazione dell'oscillazione portante, mentre
+		\begin{equation}
+			\label{pulsazione modulante}
+			w_b = \frac{w_c - w_f}{2}\ll w_c, w_f
+		\end{equation}
+		risulta la pulsazione modulante corrispondente a un oscillazione armonica di periodo molto pi\`{u} grande, che descrive il fenomeno dei battimenti ovvero la variazione periodica dell'ampiezza massima di oscillazione.
+	
+	\section{Apparato sperimentale e strumenti}
+	\begin{itemize}
+		\item due pendoli accoppiati (in cui consideriamo tutta la massa concentrata nel corpo cilindrico all'estremit\'{a})
+		\item una molla con costante elastica piccola
+		\item uno smorzatore galleggiante
+		\item programma di acquisizione 
+	\end{itemize}
+	
+	\section{Descrizione delle misure}
+		Per prima cosa abbiamo tenuto i pendoli fermi nella posizione di equilibrio e abbiamo preso un set di misure, cos\`{\i} da avere una stima dell'errore di misura di arduino. Poi abbiamo lasciato andare un pendolo senza galleggiante cosi' da avere una stima iniziale della pulsazione. Successivamente abbiamo aggiunto il galleggiante e preso un alto set di misure, cos\`{\i} da ricavare la costante di smorzamento $\lambda$. Una volta fatto questo abbiamo collegato i pendoli con una molla e li abbiamo fatti oscillare nei due moti normali, ovvero in fase e in controfase, prendendo un set di dati per entrambi. Infine, sempre con la molla attaccata, abbiamo lasciato un pendolo fermo mettendo in oscillazione l'altro, quello che si osserva \`{e} il fenomeno dei battimenti, anche per questo moto abbiamo preso un set di misure.
+		
+	\section{Analisi  dei dati}
+	\subsection{Oscillatore singolo}
+	Analizzando l'oscillazione senza galleggiante (e quindi non smorzata) abbiamo ricavato come parametro di best fit la pulsazione, la quale risulta $w_0 = 4.4429 \pm 0.0002\ s^{-1}$.\\
+	Successivamente abbiamo analizzato il moto del pendolo con il galleggiante ed eseguendo un fit con la funzione curve\_fit del modulo scipy di python abbiamo stimato la pulsazione risultante $w_d$ e il tempo di decadimento dell'ampiezza $\tau$
+	\begin{equation*}
+	w_d = 4.4223 \pm 0.0003\ [s^{-1}]\qquad \tau = \frac{1}{\lambda} = 4.01\cdot10^{-2} \pm 0.03\cdot10^{-2}\ s^{-1}
+	\end{equation*}\\
+	da cui $\frac{T_0}{T_d} = \frac{w_d}{w_0} = 0.9954$, il periodo risulta aumentato di un fattore $0.0046$, per cui non risulta cambiato significativamente, mentre l'ampiezza dopo $10$ secondi risulta ridotta di circa $34$ unit\'{a} di arduino, come si pu\`{o} osservare dal grafico (inserire grafico).\\
+	
+	\subsection{Oscillatore doppio}
+	 Per quanto riguarda l'oscillazione accoppiata abbiamo iniziato studiando i modi normali di oscillazione:\\
+	 \begin{itemize}
+	 	\item oscillazione in fase: i pendoli sono rilasciati dalla stessa altezza e dalla stessa parte rispetto alla verticale.
+	 	\item oscillazione in controfase: rilasciati dalla stessa altezza ma da parti opposte rispetto alla verticale.
+	 \end{itemize}
+	Nell'esperienza i pendoli erano collegati da una molla e durante l'oscillazione il sistema ha risentito della forza elastica per cui non risulta propriamente in fase. La pulsazione \`{e} stimata come parametro di best fit (abbiamo ricavato il parametro per entrambi i pendoli e poi fatto la media) risulta $w_f = 4.4359  \pm 0.0005\ s^{-1}$ e il rapporto $\frac{w_f}{w_0} = 0.998$(inserire errore), da cui si deduce che il comportamento degli oscillatori in fase sia equivalente a quello di un oscillatore singolo, in quanto l'effetto della molla risulta, in linea teorica, annullato.\\\\
+	Con la stessa funzione abbiamo effettuato un fit con i dati ricavati dal secondo modo di oscillazione, sempre facendo la media dei due parametri si ottiene una pulsazione $w_c = 4.5689 \pm 0.0003\ s^{-1}$ il cui valore verifica $w_c > w_f$, in accordo con la teoria.\\
+	
+	\subsection{Battimenti}
+	L'ultima serie di dati riguarda il moto pi\`{u} generale dell'oscillatore doppio il quale \`{e} dato dalla somma dei due modi normali secondo la (\ref{battimenti}).
+	Usando questa volta la (\ref{prostaferesi}) come modello per il fit abbiamo ricavato i parametri $w_p$ e $w_b$ e li abbiamo confrontati coi loro valori teorici calcolati in base a $w_c$ e $w_f$ stimati precedentemente.\\
+	\begin{center}
+	\begin{tabular}{cccc} 
+		$(s^{-1})$ & valore di fit & valore teorico & \\ 
+		\hline 
+	    $w_p$ & $4.50906 \pm 6\cdot 10^{-5}$ & $4.5024 \pm 0.0004$\\
+		\hline 
+		$w_b$& $0.06687 \pm 7\cdot10^{-5}$ & $0.0664\pm 0.0004$\\ 
+		\hline 
+		\hline
+		& $\frac{w_p fit}{w_p teorico}=1.001$ & $\frac{w_b fit}{w_b teorico}=1.005$\\ 
+	\end{tabular}
+	\end{center}
+	La corrispondenza si pu\`{o} dire verificata.\\
+	
+	\section{Conclusioni}
+	Analizzando i dati sull'oscillazione singola il valore di $\omega_0$ ricavato risulta diverso dalla teoria, infatti
+	$\omega_0 = 4.4429 \pm 0.0002 \:[s^{-1}]$.\\
+	Mentre il valore previsto dalla teoria \`{e}:
+	\begin{equation*}
+		\omega_0 = \sqrt{\frac{mgl}{I}} = \sqrt{\dfrac{mgl}{\frac{1}{2}mr^2 + ml^2}} =\sqrt{\dfrac{gl}{\frac{r^2}{2} + l^2}} = 4.383 \pm 0.004 \:[s^{-1}]
+	\end{equation*}
+	Questa discrepanza \`{e} spiegabile con il fatto che il nostro fit non considera alcuni effetti come l'attrito dell'aria o le forze applicate nel perno, inoltre il momento d'inerzia \`{e} stato calcolato trascurando lo spessore dell'asta che compone il pendolo (approssimando il sistema ad un filo con un cilindro appeso all'estremit\`{a}).\\\\
+	Per il resto si pu\`{o} notare che in alcuni grafici relativi ai residui i dati non risultano distribuiti casualmente attorno al modello, ad esempio quelli dell'oscillatore singolo non smorzato sembrano crescere nel tempo, o addirittura quelli dei modi normali sembrano oscillare. Questo inconveniente \`{e} probabilmente legato al fit, parti del modello che abbiamo utilizzato potrebbero non rispettare l'effettivo comportamento dell'oscillatore; ad esempio per l'oscillatore singolo abbiamo aggiunto un fattore di smorzamento esponenziale per comprendere tutti gli eventuali effetti legati ad attrito dell'aria, del giunto o al fatto che quando il pendolo viene rilasciato crea un lieve moto ondoso nella vaschetta sottostante (anche senza galleggiante), ma non siamo sicuri che la nostra scelta rispecchi le conseguenze di questi effetti.
+	Nonostante questo i parametri risultanti dal fit sono in buon accordo con la teoria.
+
+\end{document}
+

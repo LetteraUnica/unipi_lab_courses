@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+
+\title{Misure di densit\`{a}}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Dimostrare l'invarianza della densit\`{a} di un solido al variare del volume e stimare la densità dei solidi dati
+		
+	\section{Cenni teorici}
+		Sappiamo che una quantit\`{a} fissata di qualunque materiale occupa un volume che varia soltanto se variano le condizioni in cui tale materiale si trova (ad esempio se dovesse cambiare stato, o se cambia la temperatura o la pressione). La massa per unit\`{a} di volume è nota come densit\`{a}
+		\begin{equation}
+			\rho[kg\:m^{-3}] = \frac{m}{V}
+			\label{densita}
+		\end{equation}
+	
+	\section{Apparato sperimentale e strumenti}
+		Calibro ventesimale (risoluzione 0.05mm)\\
+		Calibro Palmer (risoluzione 0.01mm)\\
+		Bilancia di precisione (risoluzione 1mg)\\
+		Solidi in alluminio, acciaio e ottone\\
+	
+	\section{Descrizione delle misure}
+		Abbiamo usato la bilancia di precisione per misurare la massa dei solidi e, a seconda della grandezza, il calibro ventesimale o Palmer per le dimensioni del solido (tabella \ref{massa e dimensione}).
+		
+	\begin{table}
+		\centering
+		\begin{adjustbox}{width=\textwidth}
+		\begin{tabular}{lrrrr}
+			Solidi&$massa\pm0.001[g]$&$altezza[mm]$&$larghezza[mm]$&$spessore[mm]$\\
+			\hline
+			\hline
+			$Parallelepipedo\:base\:quadrata\:argentato$&4.848&18.42$\pm$0.05&10.05$\pm$0.01&10.04$\pm$0.01\\
+			$Parallelepipedo\:base\:rettangolare\:argentato$&9.658&8.14$\pm$0.01&17.60$\pm$0.05&20.10$\pm$0.05\\
+			$Parallelepipedo\:base\:quadrata\: opaco$&4.750&22.80$\pm$0.05&4.99$\pm$0.01&4.98$\pm$0.01\\
+			&&&&\\
+			
+			Solidi&$massa\pm0.001[g]$&$altezza[mm]$&$2\:apotema$&\\
+			\hline
+			\hline
+			$Parallelepipedo\:base\:esagonale\:opaco$&28.622&17.55$\pm$0.05&14.95$\pm$0.05&\\
+			&&&&\\
+			
+			Solidi&$massa\pm0.001[g]$&$altezza[mm]$&$diametro[mm]$&\\
+			\hline
+			\hline
+			$Cilindro\:grande\:argentato$&15.878&19.05$\pm$0.05&19.75$\pm$0.05&\\
+			$Cilindro\:piccolo\:argentato$&5.779&19.10$\pm$0.01&11.95$\pm$0.05&\\
+			$Cilindro\:grande\:opaco$&24.550&37.40$\pm$0.05&9.96$\pm$0.01&\\
+			$Cilindro\:piccolo\:opaco$&2.338&10.00$\pm$0.05&5.95$\pm$0.01&\\
+			&&&&\\
+			
+			Sfere&$massa\pm0.001[g]$&$diametro[mm]$&&\\
+			\hline
+			\hline
+			$Sfera 1$&3.523&4.755$\pm$0.01&&\\
+			$Sfera 2$&8.357&6.245$\pm$0.01&&\\
+			$Sfera 3$&11.892&7.135$\pm$0.01&&\\
+			$Sfera 4$&16.321&7.93$\pm$0.01&&\\
+			$Sfera 5$&24.84&9.125$\pm$0.01&&\\
+			&&&&\\
+			
+		\end{tabular}
+		\end{adjustbox}
+		\caption{Massa e dimensioni dei solidi}
+		\label{massa e dimensione}
+	\end{table}
+
+	\section{Analisi dati}
+		\subsection{Stima della densit\`{a}}
+			Dopo aver ottenuto i dati li abbiamo inseriti all'interno di un grafico(inserire grafico) con il volume sulle ascisse e la massa sulle ordinate. Eseguendo un fit con la funzione curve\_fit di scipy, abbiamo ottenuto tre rette passanti per l'origine, il cui coefficiente angolare corrisponde alla densità del solido secondo la legge
+			\begin{equation}
+				m = \rho\:V
+			\end{equation}
+			$\rho_{alluminio} = (2.760\pm0.030)10^3\: [kg\:m^{-3}]$\\
+			$\rho_{ottone} = (8.430\pm0.004)10^3\: [kg\:m^{-3}]$\\
+			$\rho_{acciaio} = (7.750\pm0.110)10^3\: [kg\:m^{-3}]$
+		\subsection{Legge di scala per le sfere}
+			Sapendo che per una sfera
+			\begin{equation}
+				m = \frac{4}{3}\pi r^3\rho= kr^3
+			\end{equation}
+			Abbiamo realizzato un grafico(inserire grafico) in carta bilogaritmica ponendo il raggio sulle ascisse e la massa sulle ordinate, abbiamo poi eseguito un fit con scipy appurando che la funzione risulta linearizzata con coefficiente angolare $m = 2.978\pm0.047$. Nell’intervallo di incertezza il valore è in accordo con la legge di potenza per le sfere, ovvero $m = 3$.
+	
+	\section{Conclusioni}
+		Considerando gli errori le densità stimate rientrano nei valori tabulati per i tre materiali. L'errore sull'acciaio risulta più alto in quanto il punto associato alla sfera di massa $8.357\pm0.001g$ si discosta maggiormente dal fit grafico, probabilmente a causa di un errore di misurazione del raggio con il calibro Palmer.
+		Risultano inoltre dimostrate sia la dipendenza lineare tra massa e volume di oggetti di uguale materiale, sia la legge di potenza che lega raggio e massa di una sfera.
+	
+\end{document}

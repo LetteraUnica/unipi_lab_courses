@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+
+\title{Pendolo semplice}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+
+	\section{Scopo dell'esperienza}
+		Stimare la conducibilità termica di un solido cilindrico, misurando la temperatura in 15 punti a distanza costante
+	
+	\section{Cenni teorici}
+		La quantit\`{a} di calore che si trasmette per conduzione per unit\`{a} di tempo
+		\begin{equation}
+			W = \frac{dQ}{dt}
+		\end{equation}
+		\`{e} detta flusso di calore. Una barra in equilibrio termico (se non ci sono perdite) mantiene costante il flusso di calore tra i suoi estremi secondo la legge
+		\begin{equation}
+			W = -\lambda S\frac{\Delta T}{\Delta x}
+			\label{flusso teorico}
+		\end{equation}
+		Dove $\lambda$ rappresenta la conducibilit\`{a} termica del materiale e $S$ \`{e} la sezione della barra. Ponendo $\Delta x = x_i$ e $\Delta T = T_i - T_0$ la (\ref{flusso teorico}) diventa
+		\begin{equation}
+			W = -\lambda S\frac{(T_i-T_0)}{x_i}
+		\end{equation}
+		Ovvero
+		\begin{equation}
+			T_i = T_0 - \frac{W}{\lambda S}x_i
+		\end{equation}
+		Quindi ci aspettiamo che la temperatura decresca linearmente al crescere della distanza, con coefficiente angolare
+		\begin{equation}
+			m=-\frac{W}{\lambda S}
+		\end{equation}
+		Dove $W = VI$.
+		In questo caso il generatore, essendo collegato ad entrambi i cilindri, alimenta due resistenze in parallelo, quindi
+		\begin{equation}
+			W=\frac{WI}{2}
+		\end{equation}
+	
+	\section{Apparato sperimentale e strumenti}
+		Due barre cilindriche dotate di 15 fori, di cui una rivestita di materiale isolante
+		Due termistori
+		Calcolatore con programma di acquisizione
+		Un alimentatore chiuso su due resistenze in parallelo
+		Un circuito di acqua corrente
+		Metro a nastro (risoluzione 1mm)
+	
+	\section{Descrizione delle misure}
+		Abbiamo misurato la distanza di ciascun foro dall'estremo caldo con il metro a nastro. Successiamente con il programma di acquisizione abbiamo registrato 100 temperature per foro, tenendo fisso un termistore nel primo foro e variando la posizione del secondo (inserire tabella). Da ogni acquisizione abbiamo ricavato media e scarto.
+	
+	\section{Analisi dei dati}
+		Per entrambi i cilindri abbiamo realizzato un grafico in python(figura \ref{fig:cilindro-non-isolato} e  \ref{fig:cilindro-isolato}) con la temperatura sulle ordinate e la distanza dall'estremo riscaldato sulle ascisse. Abbiamo inoltre calcolato la line of best fit con la funzione curve\_fit del modulo scipy di python.\\\\Per il cilindro non isolato risulta
+		\begin{equation}
+			m = -\frac{W}{\lambda S} = -5.69\pm0.04 [C\:cm^{-1}]
+		\end{equation}
+		\begin{equation}
+			\lambda = 410\pm 60 [W\:m{-1}\:C{-1}]
+		\end{equation}
+		Il $\chi^2$ della retta purtroppo risulta $1213$ molto pi\`{u} elevato del valore aspettato di $12$.\\\\Per il cilindro isolato abbiamo invece	
+		\begin{equation}
+			m = -\frac{W}{\lambda S} = -5.88\pm0.004
+		\end{equation}
+		\begin{equation}
+			\lambda = 410\pm 60 [W\:m{-1}\:C{-1}]
+		\end{equation}
+		Il $\chi^2$ della retta anche in questo caso \`{e} elevato, risultando $567$ lontano dal valore aspettato di $12$.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{"Cilindro non isolato"}
+		\caption{Grafico temperatura in funzione della distanza}
+		\label{fig:cilindro-non-isolato}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{"Cilindro isolato"}
+		\caption{Grafico temperatura in funzione della distanza}
+		\label{fig:cilindro-isolato}
+	\end{figure}
+	
+	\section{Conclusioni}
+		La conducibilità termica λ del materiale \`{e} direttamente proporzionale al flusso di calore W attraverso la barra. Essendo W più alto nel caso isolato, la conducibilit\`{a} associata a quest'ultimo dovrebbe risultare più alta.
+		Tuttavia i nostri dati mostrano il contrario, tale contraddizione potrebbe essere dovuta al fatto che la temperatura del sistema \`{e} molto sensibile dalla temperatura dell'ambiente esterno. Inoltre avendo effettuato le misurazioni relative al cilindro isolato successivamente a quelle relative al cilindro non isolato le condizioni dell'esperienza potrebbero essere state differenti. La conducibilità in entrambi i casi si avvicina a quella riconosciuta per il rame di circa 400 W/mC. Il $\chi^2$ risulta in entrambi i casi troppo grande, probabilmente si deve aumentare l'errore associato alla temperatura in quanto non si tiene conto della variazione di temperatura esterna durante il tempo impiegato per le misure
+		
+\end{document}

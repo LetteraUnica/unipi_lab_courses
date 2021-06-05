@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Misure di indici di rifrazione}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Misurare gli indici di rifrazione del plexiglass e dell'acqua
+	
+	\section{Cenni teorici}
+		Se un raggio di luce passa da un mezzo con indice di rifrazione $n_1$ ad uno con indice di rifrazione $n_2$ esso viene deviato, gli angoli di incidenza e di rifrazione sono legati tra loro dalla legge di Snell
+		\begin{equation}
+		n_1 \sin\theta_i = n_2\sin\theta_r
+		\label{Snell}
+		\end{equation}\\\\
+		
+		Nel caso di un diottro sferico riempito di acqua $p$ e $q$ sono legati dalla relazione
+		\begin{equation}
+			\frac{n_2}{p} + \frac{n_1}{q} = \frac{n_2 - n_1}{r}
+			\label{acqua}
+		\end{equation}
+		dove $r$ rappresenta il raggio del diottro. Ricordando che $n_1 \approx 1$, $p$ e $q$ sono legati da
+		\begin{equation}
+			\frac{1}{q} = -\frac{n_2}{p} + \frac{n_2-1}{r}
+			\label{relazione p e q}
+		\end{equation}
+	
+	\section{Apparato sperimentale e strumenti}
+		\begin{itemize}
+			\item Banco ottico con sorgente luminosa
+			\item Un semicilindro in plexiglass
+			\item Un diottro sferico riempito di acqua
+			\item Un metro a nastro (risoluzione 1mm)
+		\end{itemize}
+	
+	 Seconda parte(da rivedere): l'apparato sperimentale \'{e} composto da una sorgente immersa in un ampolla(diottro) contenente acqua, sul fondo del quale \'{e} attaccato un piccolo rombo, la luce si proietta su uno schermo sotto l'ampolla; sia quest'ultimo che la sorgente sono mobili.
+	
+	\section{Descrizione delle misure}
+		\subsection{Plexiglass}
+			Nella prima parte dell'esperienza un fascio di luce collimato viene fatto passare attraverso un semicilindro in plexiglass. Gli angoli di incidenza e di rifrazione sono stati ottenuti posizionando un foglio in carta millimetrata sotto il semicilindro e facendo incidere il raggio luminoso sulla parte piana. Abbiamo segnato con una matita sulla carta millimetrata una decina di angoli diversi (inserire tabella) ruotando opportunamente il semicilindro. Successivamente abbiamo misurato il raggio della circonferenza stampata sulla carta millimetrata $r = 8.10 \pm 0.05 cm$ e poi la lunghezza dei cateti relativi ai diversi angoli:\\\\
+			\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+				$r\sin\theta_i \pm0.05(cm)$& 1.40& 2.40& 3.00& 3.40& 4.40& 5.20& 5.9& 6.6& 7.5  \\ 
+				\hline 
+				$r\sin\theta_r \pm 0.05(cm)$& 1.00& 1.60& 2.00& 2.30& 3.00& 3.50& 4.00& 4.4& 5.0 \\ 
+			\end{tabular}\\\\
+			l'errore \'{e} dimezzato perch\'{e} abbiamo interpolato tra le tacche.\\\\
+		
+		\subsection{Acqua}
+			Nella seconda parte dell'esperienza viene fatto passare un raggio luminoso generato da una lampadina attraverso un diottro sferico riempito d'acqua. Al di sotto del diottro \`{e} presente uno schermo che si pu\`{o} muovere su una guida verticale. Per ogni misurazione abbiamo fatto variare la posizione della sorgente e abbiamo messo a fuoco opportunamente il raggio luminoso sullo schermo ottenendo cos\`{\i} da ottenere una serie di valori di $p$ e $q$. Successivamente abbiamo misurato il raggio dell'ampolla che risulta $r = 6.60 \pm 0.05 cm$, gli altri dati sono riportati nella seguente tabella:\\\\
+			\begin{adjustbox}{width=\textwidth}
+			\begin{tabular}{c|c|c|c|c|c}
+				\centering
+				$\textit{p}^{-1}(cm^{-1})$& 0.0242$\pm$0.0002& 0.0224$\pm$0.0002& 0.0268$\pm$0.0003& 0.0284$\pm$0.0004& 0.0299$\pm$0.0004\\ 
+				$\textit{q}^{-1}(cm^{-1})$& 0.0192$\pm$0.0001& 0.0211$\pm$0.0002& 0.0154$\pm$0.0001& 0.0137$\pm$0.0001& 0.0120$\pm$0.0001\\
+			\end{tabular}
+			\end{adjustbox}\\
+		
+	\section{Analisi dei dati}
+		\subsection{Plexiglass}
+			Abbiamo eseguito un fit (inserire grafico e chi2 associato) utilizzando il pacchetto ODR del modulo scipy di python che considera anche gli errori sulla x che in questo caso non sono trascurabili. Il coefficiente angolare della retta di best fit corrisponde all'indice di rifrazione del plexiglass che risulta
+			\begin{equation*}
+			n_{plexiglass} = 1.50 \pm 0.02
+			\end{equation*}
+			
+		\subsection{Acqua}
+			Anche in questo caso abbiamo eseguito un fit (inserire grafico e chi2 associato) utilizzando il pacchetto ODR del modulo scipy di python usando come modello la (\ref{acqua}). Il coefficiente angolare della retta di best fit corrisponde anche in questo caso all'indice di rifrazione che risulta 
+			\begin{equation*}
+				n_{acqua} = 1.25 \pm 0.07
+			\end{equation*}
+				
+	\section{Conclusioni}	
+		Per quanto riguarda il plexiglass il parametro rientra nel valore teorico di $n_{plexiglass} = 1.48$, anche se il $\chi^2$ risulta $2.0$, pi\`{u} basso del valore aspettato di $9\pm4.2$, questo pu\`{o} essere dovuto ad una sovrastima degli errori.\\\\
+		L'indice di rifrazione dell'acqua risulta anch'esso in accordo con il valore teorico di $n_{acqua}=1.33$ , il $\chi^2$ questa volta risulta $1.1$ che rientra nel valore stimato di $5\pm 3.2$. Per migliorare il risultato dell'esperienza avremmo potuto aumentare il numero di misure e valutare meglio gli errori.
+	
+\end{document}

@@ -1,0 +1,77 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+
+\title{Pendolo Quadrifilare}
+\date{3 Marzo 2017}
+\author{Lorenzo Cavuoti\\Alice Longhena}
+
+\begin{document}
+	\maketitle
+	\section{Scopo dell'esperienza}
+		Studio della dipendenza del periodo di un pendolo in funzione dell'angolo theta
+	\section{Cenni teorici}
+		Nel momento in cui il pendolo si trova nella posizione di massima altezza la sua energia meccanica sar\`{a} solo composta da energia potenziale, al contrario, nel punto pi\`{u} basso avremo soltanto energia cinetica, di conseguenza possiamo scrivere
+		\begin{equation}
+			mgl(1-\cos(\theta_0)) = \frac{1}{2}mv_0^2
+		\end{equation}
+		Da cui si ricava
+		\begin{equation}
+			\theta_0 = \arccos(1-\frac{v_0^2}{2gl})
+		\end{equation}
+		Il periodo invece lo si pu\`{o} ricavare dall'equazione differenziale che descrive il moto di un pendolo, ovvero
+		\begin{equation}
+			\ddot{\theta} = \frac{l}{m}\sin(\theta)
+		\end{equation}
+		Sviluppando in serie di Taylor $\sin(\theta)$ e risolvendo si ottiene
+		\begin{equation}
+			T = 2\pi \sqrt{\frac{l}{g}}(1+\frac{1}{16}\theta^2+\frac{11}{3072}\theta^4)
+			\label{eq periodo}
+		\end{equation}
+		Infine il pendolo subir\`{a} l'effetto dell'attrito viscoso dell'aria quindi ci aspettiamo uno smorzamento esponenziale della velocit\`{a}
+		\begin{equation}
+			v_0(t) = v_0(0)\,e^{-\lambda t}
+			\label{eq smorzamento}
+		\end{equation}
+	
+	\section{Apparato sperimentale e strumenti}
+		Metro a nastro (risoluzione 1mm)\\
+		Computer per acquisizione e analisi di dati\\
+		Un pendolo quadrifilare
+	
+	\section{Descrizione delle misure}
+		Abbiamo misurato la distanza(\textit{l}) dal centro di massa del pendolo al punto di sospensione e la distanza(\textit{l-d}) dal centro di massa alla fine della sbarretta in metallo, utilizzata per rilevare il tempo di passaggio. Inoltre abbiamo misurato la larghezza della sbarretta in metallo cosi' da ricavare la velocit\`{a} in funzione del tempo di percorrenza. Infine il tempo di percorrenza \`{e} stato misurato con un traguardo ottico collegato ad un sistema arduino.
+	
+	\section{Analisi dei dati}
+		\subsection{Misura della costante di smorzamento}
+			Per prima cosa abbiamo realizzato un grafico della velocit\`{a} in funzione del tempo(misurato dal rilascio del pendolo) ed eseguito un fit usando la funzione curve\_fit di scipy (figura \ref{fig oscillazione smorzata}) cosi' da ricavare la costante di smorzamento $\tau = 1/\lambda = (9.31\pm0.02)10^{-3}$. Il $\chi^2$ risulta $26.3$, ben lontano dal valore aspettato di $560\pm33$.\\Per completezza abbiamo anche realizzato un grafico del periodo $T$ in funzione del tempo(figura \ref{fig periodo smorzato}) ci aspettiamo anche in questo caso una diminuzione del periodo a causa della diminuzione dell'ampiezza d'oscillazione come previsto dalla (\ref{eq periodo})
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{"Oscillazione smorzata"}
+				\caption{Velocit\`{a} in funzione del tempo}
+				\label{fig oscillazione smorzata}
+			\end{figure}
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{"Periodo smorzato"}
+				\caption{Periodo in funzione del tempo}
+				\label{fig periodo smorzato}
+			\end{figure}
+		
+		\subsection{Misura del periodo in funzione dell'angolo}
+			Successivamente abbiamo realizzato un grafico \`{e} il relativo fit del periodo $T$ in funzione dell'ampiezza $\theta$(figura \ref{fig periodo ampiezza}), cosi' da verificare la (\ref{eq periodo}). Il fit in questo caso \`{e} stato fatto utilizzando la libreria odr, in quanto le incertezze sulla $x$ non erano trascurabili.\\ I parametri risultano rispettivamente:\\$a = 0.0594\pm0.0003$\\$b = 0.0022\pm0.0018$\\\\Il parametro a non rientra nel valore aspettato di $1/16 = 0.0625$, mentre il parametro b rientra nel valore aspettato di $11/3072 \approx 0.00358$, anche se con un errore assoluto dello stesso ordine di grandezza. Infine il $\chi^2$ risulta $\approx 6$, lontano dal valore aspettato di $225\pm21$.
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\linewidth]{"Periodo normale 10"}
+				\caption{Periodo in funzione dell'ampiezza}
+				\label{fig periodo ampiezza}
+			\end{figure}
+	
+	\section{Conclusioni}
+		La prima parte dell'esperienza \`{e} coerente con quanto visto nella teoria, infatti la (\ref{eq smorzamento}) descrive bene lo smorzamento della velocit\`{a}. Il $\chi^2$ risulta $26.3$, molto lontano dal valore aspettato di $560\pm33$. Ci\`{o} potrebbe essere causato dagli strumenti utilizzati, infatti per misurare lo spessore della sbarretta si \`{e} utilizzato un metro a nastro, generando un errore relativo del 5\%, si potrebbe evitare questo errore utilizzando un calibro ventesimale.\\\\Per quanto riguarda il fit del periodo in funzione dell'angolo $\theta$ abbiamo ottenuto risultati diversi dalla teoria, il parametro $a = 0.0594\pm0.0003$ risulta diverso da $1/16$ previsto dalla teoria. Mentre il parametro $b = 0.0022\pm0.0018$ rientra in $11/3072$ ma l'errore relativo associato ad esso risulta $\Delta b/b \approx 0.82$. Questi risultati potrebbero essere causati da una errata misura della distanza $l$ dal punto di sospensione al centro di massa del pendolo, infatti variando anche di poco $l$ nel programma di analisi dati, si ottengono valori molto diversi dei parametri. Infine il $\chi^2\approx6$ risulta ancora una volta molto inferiore rispetto al valore aspettato di $225\pm21$, questo potrebbe essere dovuto, come nel caso precedente, alla misura dello spessore della sbarretta eseguita con il metro a nastro.
+\end{document}
+

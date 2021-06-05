@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[italian]{babel}
+
+\title{Pendolo semplice}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Studiare il moto di una sferetta su un piano inclinato verificando la legge che lega lo spazio in funzione del tempo e stimandone l’accelerazione.
+	
+	\section{Cenni teorici}
+		L'accelerazione del centro di massa di una sfera lungo un profilo inclinato vale
+		\begin{equation}
+			a = \frac{5}{9}g\sin(\theta)
+			\label{accelerazione}
+		\end{equation}
+		Dove $\alpha$ rappresenta l'angolo di inclinazione della guida. Considerando nulla la velocit\`{a} iniziale del centro di massa la legge oraria che regola il moto di quest'ultimo sar\`{a} allora
+		\begin{equation}
+			s(t) = \frac{1}{2}at^2 = \frac{5}{18}g\sin(\theta)t^2
+			\label{legge oraria}
+		\end{equation}
+		
+	\section{Apparato sperimentale e strumenti}
+		Profilo metallico “a V” (ad angolo retto)\\
+		Tre sferette di massa e dimensioni diverse\\
+		Calcolatore con programma di acquisizione\\
+		Due traguardi ottici collegati al calcolatore\\
+		Metro a nastro (risoluzione 1mm)\\
+		Calibro ventesimale (risoluzione 0,05mm)\\
+		Livella elettronica (risoluzione 0.01\textdegree)\\
+		Bilancia di precisione (risoluzione 0.001g)\\
+	
+	\section{Descrizione delle misure}
+		(Inserire tabelle) Abbiamo utilizzato due inclinazioni diverse e quattro diverse lunghezze per ciascuna delle tre masse, e misurato sei diversi periodi per ogni massa.
+		I periodi sono stati misurati tramite un sistema di acquisizione basato su due fotocelle, una delle quali viene mantenuta fissa durante tutta la durata dell'esperimento, mentre l'altra viene spostata ad ogni misurazione, cos\`{\i} da variare la distanza, la quale è stata misurata con il metro a nastro. Il diametro delle sfere è stato misurato tramite il calibro ventesimale. Infine, visto che il profilo non \`{e} idealmente livellato, per misurare l'angolo d'inclinazione abbiamo utilizzato una livella elettronica facendo la media tra 5 misurazioni in diversi punti lungo il piano e prendendo come errore la deviazione standard.
+	
+	\section{Analisi dei dati}
+		Per ogni configurazione abbiamo realizzato un grafico con la distanza percorsa sulle ascisse e il tempo di percorrenza elevato al quadrato sulle ordinate. Facendo un fit con la funzione curve\_fit del modulo scipy di python abbiamo ricavato il coefficiente angolare della retta generata che rappresenta l'accelerazione del centro di massa della sfera, infatti dalla (\ref{legge oraria}) si ricava
+		\begin{equation}
+			t^2(s) = \frac{2}{a}s
+		\end{equation}
+		I primi tre grafici (inserire grafici) rappresentano le misure effettuate con la prima inclinazione e con ciascuna delle tre masse, i secondi tre (inserire grafici) rappresentano le misure effettuate con la seconda inclinazione e ciascuna delle tre masse.\\\\
+		Abbiamo successivamente realizzato un grafico in carta bilogaritmica dei tempi di percorrenza in funzione delle distanze corrispondenti alla sfera 1 con inclinazione $\theta_2$, dalla cui analisi si ricava un coefficiente angolare $m = 0.584\pm0.005\:[m\:s^{-2}]$
+		
+	\section{Conclusioni}
+		Dai risultati si deduce che l'accelerazione \`{e} indipendente dalla massa utilizzata, di conseguenza abbiamo calcolato la media delle tre accelerazioni corrispondenti a ciascuno dei due $\theta$ cosi' da confrontare i due risultati ottenuti con la teoria.
+		Utilizzando la (\ref{accelerazione}), l'accelerazione aspettata per il primo angolo \`{e} $a = 0.169\pm0.003\:[m\:s^{-2}]$ mentre noi abbiamo ottenuto $a=0.141\pm0.005\:[m\:s^{-2}]$. Il risultato cos\`{\i} differente potrebbe essere causato dall'attrito in quanto l'inclinazione del piano era molto bassa. Infatti nella formula dell'attrito abbiamo supposto che la velocit\`{a} tangenziale della sfera nei punti di appoggio sia uguale alla velocità del centro di massa mentre nel caso sperimentale non è cos\`{\i} in quanto abbiamo anche scivolamento.
+		Per il secondo angolo abbiamo un accelerazione aspettata di $a = 0.386\pm0.005\:[m\:s^{-2}]$ e abbiamo ottenuto $a=0.393\pm0.008\:[m\:s^{-2}]$. Il risultato corrisponde nei limiti degli errori con quanto aspettato dal modello, alzando $\theta$ abbiamo ridotto gli effetti dell'attrito e di conseguenza il tempo di percorrenza della sfera. Infatti per un punto che scivola su un piano inclinato abbiamo una forza di attrito dinamico direttamente proporzionale al coseno dell'angolo secondo la legge $F_A=μ_dmg\cos(\theta)$per cui pi\`{u} \`{e} piccolo $\theta$ maggiore \`{e} la forza di attrito.
+			
+		
+\end{document}

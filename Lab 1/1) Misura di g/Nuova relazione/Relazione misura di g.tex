@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+
+\title{Misura di g utilizzando una molla}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Dimostrazione legge di Hooke e stima dell’accelerazione di gravità a livello del suolo (g) a partire dagli allungamenti di una molla
+	
+	\section{Cenni teorici}
+		Se gli allungamenti della molla non sono troppo grandi vale la legge di Hooke: l'allungamento è proporzionale all'intensit\`{a} della forzza che lo ha causato, risulta allora
+		\begin{equation}
+			(m_p+m_i)g=k(l_i-l_o)
+			\label{hooke}
+		\end{equation}
+		Da cui si ricava
+		\begin{equation}
+		l_i = \frac{g}{k}m_i+\frac{g}{k}m_p+l_0
+		\label{li}
+		\end{equation}
+		Dove $m_p$ \`{e} la massa del piattello, $m_i$ \`{e} la massa posta sul piattello, $l_i$ \`{e} la lunghezza della molla sotto carico, $l_o$ \`{e} la lunghezza della molla a riposo e $k$ \`{e} la costante elastica della molla.\\\\
+		Se si mette in oscillazione la molla il periodo del moto armonico vale
+		\begin{equation}
+			T_i = 2\pi\sqrt{\frac{m_p+m_i+m/3}{k}}
+			\label{Periodo}
+		\end{equation}
+		Elevando al quadrato la (\ref{Periodo}) si ottiene
+		\begin{equation}
+			T_i^2 = \frac{4\pi^2}{k}m_i+\frac{4\pi^2}{k}(mp+m/3)
+			\label{Periodo2}
+		\end{equation}
+
+	\section{Apparato sperimentale e strumenti}
+		Molla\\
+		Piattello\\
+		Pesetti di massa variabile tra circa 5g e 50g\\
+		Cronometro (risoluzione 0.01s)\\
+		Bilancia di precisione (risoluzione 0.001g)\\
+		Metro a nastro (risoluzione 0.1cm)
+	
+	\section{Descrizione delle misure}
+		Dopo aver misurato la massa 10 diverse combinazioni di pesetti da 5g a 50g abbiamo effettuato 6
+		misurazioni di 10 periodi associati a ciascuna combinazione (tabella \ref{tabella periodi massa}). Successivamente abbiamo misurato gli allungamenti della molla corrispondenti alle diverse combinazioni di pesetti(tabella \ref{tabella allungamento massa}).
+	
+	\begin{table}
+		\centering
+		\begin{tabular}{lrrrrrrr}
+			Masse utilizzate&$\tau_1$&$\tau_2$&$\tau_3$&$\tau_4$&$\tau_5$&$\tau_6$&$\mu\tau$\\
+			\hline
+			\hline
+			$Pesetto\;50g$&9.57&9.45&9.55&9.49&9.36&9.54&9.54\\
+			$Pesetto\;45g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;40g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;35g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;30g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;25g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;20g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;15g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;10g$&6&6&6&6&6&6&9.54\\
+			$Pesetto\;5g$&6&6&6&6&6&6&9.54\\
+		\end{tabular}
+		\caption{Periodi in funzione della massa}
+		\label{tabella periodi massa}
+	\end{table}
+	
+	\begin{table}
+	\centering
+	\begin{tabular}{lrr}
+		Oggetti&$massa\pm0.001[g]$&$l_i\pm0.2[cm]$\\
+		\hline
+		\hline
+		$Molla$&8.310&13.7\\
+		$Piattello$&7.770&16.5\\
+		$Pesetto\;50g$&49.951&35.8\\
+		$Pesetto\;45g$&44.982&34.3\\
+		$Pesetto\;40g$&39.978&31.8\\
+		$Pesetto\;35g$&34.940&30.0\\
+		$Pesetto\;30g$&6&6\\
+		$Pesetto\;25g$&6&6\\
+		$Pesetto\;20g$&6&6\\
+		$Pesetto\;15g$&6&6\\
+		$Pesetto\;10g$&6&6\\
+		$Pesetto\;5g$&6&6\\
+	\end{tabular}
+	\caption{Allungamento molla in funzione della massa}
+	\label{tabella allungamento massa}
+	\end{table}
+	
+	\section{Analisi dei dati}
+		\subsection{Stima di k}
+			Abbiamo usato come miglior stima dei periodi la loro media($\mu\tau$) e come errore la deviazione standard della media. Abbiamo poi realizzato un grafico(figura da inserire) con ordinata la stima dei periodi al quadrato e inserendo sulle ascisse le singole masse. Facendo un fit con la funzione curve\_fit del modulo scipy di python abbiamo verificato la dipendenza lineare delle due variabili e abbiamo stimato il coefficiente angolare della retta corrispondente a $\frac{4\pi^2}{k}$
+			\begin{equation}
+				k = \frac{4\pi^2}{m} =\frac{4\pi^2}{0.0151\pm0.0018} = (2.61\pm0.31)10^3\:[g\:s^{-2}]
+			\end{equation}
+			
+		\subsection{Stima di g}
+			Dalle misure degli allungamenti della molla (tabella \ref{tabella allungamento massa}) abbiamo realizzato un grafico(inserire grafico) con l'allungamento della molla sulle ordinate e la massa applicata ad essa sulle ascisse, facendo poi un fit con la funzione curve\_fit abbiamo calcolato il coefficiente angolare della retta, corrispondente a $g/k$. Dal grafico si nota inoltre la dipendenza lineare tra le due grandezze come previsto dalla legge di Hooke.
+			\begin{equation}
+				\frac{g}{k} = 0.402\pm0.008 [cm\:g^{-1}]
+			\end{equation}
+			Da cui
+			\begin{equation}
+				g = ((2,61\pm0,31)10^3)(0.402\pm0.008) = 10.5 \pm 1.5[m\:s^{-2}]
+			\end{equation}
+	
+	\section{Conclusioni}
+		Considerando gli errori, il nostro valore di $g$ rientra nel valore misurato per Pisa ($9.807 [m\:s^{-2}]$), pur essendo la stima maggiore del 6,9\%. Per ridurre l'errore associato e avere una stima pi\`{u} precisa \`{e} necessario usare uno strumento di misura della lunghezza pi\`{u} accurato ed effettuare pi\`{u} misure del periodo della molla. L'errore associato alle masse invece si pu\`{o} considerare trascurabile in quanto molto minore rispetto agli errori sulle altre grandezze.
+\end{document}

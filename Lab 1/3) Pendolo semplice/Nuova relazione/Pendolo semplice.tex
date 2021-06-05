@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+
+\title{Pendolo semplice}
+\author{Lorenzo Cavuoti \\ Alice Longhena}
+
+\begin{document}
+	\maketitle
+	
+	\section{Scopo dell'esperienza}
+		Studiare la dipendenza del periodo di un pendolo semplice dalla lunghezza del filo, dalla massa appesa e dall'ampiezza di oscillazione iniziale.
+
+	\section{Cenni teorici}
+		Sappiamo che il periodo di un pendolo semplice segue la legge
+		\begin{equation}
+			T = 2\pi \sqrt{\frac{l}{g}}(1+\frac{1}{16}\theta_0^2)
+			\label{periodo pendolo}
+		\end{equation}
+		Dalla formula notiamo che il periodo non dipende dalla massa ma soltanto dalla lunghezza del filo e dall'angolo θ, anche se quest'ultima dipendenza si annulla nell'ordine delle piccole oscillazioni.
+
+	\section{Apparato sperimentale e strumenti}
+		3 solidi regolari di massa diversa, dotati di gancio\\
+		Cronometro (risoluzione 0.01s)\\
+		Bilancia di precisione (risoluzione 0.001g)\\
+		Metro a nastro (risoluzione 1mm)\\
+	
+	\section{Descrizione delle misure}
+		Abbiamo misurato la massa e l'altezza di ogni pesetto, in modo da calcolare il centro di massa (inserire tabella). Successivamente abbiamo misurato il periodo del pendolo al variare della massa mantenendo costanti $\theta$ e $l_0$ (inserire tabella). Poi abbiamo fatto variare $l_0$ e tenuto costante la massa e $\theta$ (inserire tabella). Infine abbiamo fatto variare $\theta$ e tenuto costante $l_0$ e la massa, cos\`{\i} da osservare il comportamento quadratico del periodo sulle grandi oscillazioni (inserire tabella).
+	
+	\section{Analisi dati}
+		\subsection{Dipendenza dalla massa}
+			Abbiamo realizzato un grafico (inserire grafico) della media di 10 periodi in funzione della massa appesa al filo, associando ad ogni misura un'incertezza corrispondente alla deviazione standard, abbiamo cosi' realizzato un fit con la funzione curve\_fit del modulo scipy di python, il coefficiente angolare della retta risulta
+			\begin{equation}
+				m = 0.001\pm0.003\: [s\:kg^{-1}]
+			\end{equation}
+			Corrispondente a $0$, come previsto dalla (\ref{periodo pendolo})	
+			
+		\subsection{Dipendenza dalla lunghezza}
+			Successivamente abbiamo realizzato un grafico (inserire grafico) della media di 10 periodi elevati al quadrato al variare della lunghezza del filo. Come nel caso precedente la relazione risulta lineare e, utilizzando la funzione curve\_fit di scipy abbiamo calcolato il coefficiente angolare della retta
+			\begin{equation}
+				m = 4.05\pm0.01\:[m^{-1}\:s^{-2}]
+				\label{m lunghezza}
+			\end{equation}
+			
+		\subsection{Dipendenza dall'ampiezza}	
+			Infine abbiamo realizzato un grafico (inserire grafico) della media di 10 periodi al variare di  $\theta$, con $\theta$ compreso tra 10° e 50°, abbiamo confrontato l'errore sul periodo relativo a 10° (0,0031 s) con il valore della funzione al secondo ordine calcolato sempre in 10° (0,0029 s). Si osserva allora un comportamento quadratico del periodo gi\`{a} dai 10°.
+	
+	\section{Conclusioni}
+		Come previsto dalla teoria il periodo di un pendolo non dipende dalla massa (linka grafico). Inoltre abbiamo verificato che il periodo al quadrato dipende dalla lunghezza del filo secondo una legge lineare(linka grafico) e abbiamo stimato il coefficiente angolare della retta (\ref{m lunghezza}) che corrisponde al valore aspettato di
+		\begin{equation}
+			4\frac{\pi^2}{g}=4.033\:[m^{-1}\:s^2]
+		\end{equation}
+		Infine variando l'ampiezza abbiamo notato nel grafico(linka grafico) il comportamento quadratico del periodo del pendolo, i termini successivi a $\frac{1}{16}\theta_0^2$ non si riescono a cogliere in quanto molto minori dell'errore associato alla misura del periodo. La teoria prevede anche un intervallo di isocronia ma il fenomeno non si verifica nel nostro range di angoli.
+	
+\end{document}
