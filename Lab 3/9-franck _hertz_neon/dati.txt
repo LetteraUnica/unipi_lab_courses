@@ -1,0 +1,55 @@
+Punto 1
+Variazione UA
+All’aumentare di UA si aumenta il potenziale accelerante degli elettroni che assumono energie maggiori in meno spazio determinando la comparsa di più bande, la e il loro spostamento verso il basso e aumento dell’intensità luminosa. Si deformano diventando concave.
+
+Variazione di UG
+All’aumentare di UG aumenta il numero di elettroni emessi per effetto termoionoio dal catodo e si osserva un aumento di luminosità delle bande.
+
+Punto 2
+Comparsa prima banda UA = 28.5
+Comparsa prima banda UA = 22.5
+Comparsa prima banda UA = 25.5
+Comparsa seconda banda UA2 = 44.5
+Comparsa seconda banda UA2 =32.5
+Comparsa seconda banda UA2 = 46.5
+Comparsa terza banda UA3 = 58
+Comparsa terza banda UA3 =39.0
+Comparsa terza banda UA3 = 68.5
+
+Punto 3
+Ponendo UE = 0 togliamo il potenziale frenante tra anodo e collettore, dunque anche gli elettroni che interagiscono con il Neon vengono raccolti dal collettore. Osserviamo un segnale senza minimi e massimi che segue semplicemente la legge dell’emissione termoionica di elettroni
+
+Punto 4
+Al variare di Ue osserviamo che da quando è zero e ha un comportamento “esponenziale” pian piano compaiono i picchi fino ad arrivare a zero e sotto zero.
+
+Punto 5 
+Aumenta la corrente lasciando invariata la forma d’onda.
+UE1 = 8.5 
+Max1 = 1.92 V
+Min1 = 2.64 V
+Max2 = 3.68 V
+Min2 = 4.40 V
+Max3 = 5.68 V
+Min3 = 6.48 V
+Max 4 = 7.84 V
+
+Ue2 = 7.3 V
+Max1 = 1.84 V
+Min1 = 2.56 V
+Max2 = 3.60 V
+Min 2 = 4.32 V
+Max 3 = 5.68 V
+Min 3 = 6.24 V
+
+Ue = 2.2V
+Max 1 = 1.84 V
+Min 1 = 2.08 V
+Max 2 = 3.52 V 
+Min 2 = 3.76
+
+Ue = 0.8 V 
+Max 1 = 1.84 V
+Min 2 = 1.92 V
+
+
+

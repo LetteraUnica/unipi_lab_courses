@@ -1,0 +1,12 @@
+# Calcolo di k
+# nfrange=80
+# dS=14	
+#
+# Calcolo lunghezza onda lampada al mercurio				
+# nfran	ds
+40	6.50E-05
+40	6.00E-05	
+40	6.00E-05
+40	5.50E-05	
+32	4.00E-05
+
